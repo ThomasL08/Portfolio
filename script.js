@@ -23,22 +23,28 @@ function show(){
 function close(){
     mainMenu.style.top = '-100%';
 }
-
-const scrollUpBtn = document.querySelector("#scroll-up-btn");
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 0) {
-    scrollUpBtn.classList.remove("hidden");
+window.addEventListener('scroll', function() {
+  var scrollPosition = window.scrollY;
+  var windowHeight = window.innerHeight;
+  var fullHeight = document.body.scrollHeight;
+  
+  if (scrollPosition > windowHeight / 2) {
+    document.getElementById('scroll-up-button').style.display = 'block';
   } else {
-    scrollUpBtn.classList.add("hidden");
+    document.getElementById('scroll-up-button').style.display = 'none';
+  }
+  
+  if (scrollPosition >= fullHeight - windowHeight) {
+    document.getElementById('scroll-up-button').style.bottom = '70px';
+  } else {
+    document.getElementById('scroll-up-button').style.bottom = '20px';
   }
 });
 
-scrollUpBtn.addEventListener("click", () => {
+document.getElementById('scroll-up-button').addEventListener('click', function() {
   window.scrollTo({
     top: 0,
-    behavior: "smooth"
+    behavior: 'smooth'
   });
 });
-
 
